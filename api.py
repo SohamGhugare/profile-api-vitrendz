@@ -15,7 +15,7 @@ if __name__ == "__main__":
     generate_schema()
 
     # Adding users from json to database
-    create_users()
+    # create_users()
 
     # Using uvicorn for creating an ASGI server
-    # run("api:app", reload=True)
+    run("api:app", reload=True)

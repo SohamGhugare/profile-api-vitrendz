@@ -1,6 +1,6 @@
 """
 This file contains the code for parsing the json provided in the problem statement
-Note: The repo doesnt contain the downloaded json file for storage purposes.
+Note: The repo doesnt contain the downloaded json file for storage purposes (check data/clients.db file for data).
 """
 import json
 from typing import List
@@ -17,7 +17,7 @@ def parse() -> List[User]:
     for d in data:
         user = User(
             guid = d["guid"],
-            is_active = True if d["isActive"]=="true" else False,
+            is_active = True if d["isActive"] else False,
             balance = float(d["balance"][1:].replace(",", "")),
             picture = d["picture"],
             age = int(d["age"]),
