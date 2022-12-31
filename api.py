@@ -31,6 +31,7 @@ async def create_user():
 async def delete_user(id: int):
     ...
 
+## <<----------------------------------------------------->>
 
 if __name__ == "__main__":
     # Generating the database file and schema
