@@ -1,7 +1,7 @@
 """
 This file contains all the database operation functions
 """
-from sqlmodel import create_engine, Session
+from sqlmodel import create_engine, Session, select
 from .models import User
 
 class Database:
@@ -25,5 +25,11 @@ class Database:
             session.add(user)
             session.commit()
             return user.name
+
+    # Fetching user
+    def fetch_user_by_id(self, id: int):
+        with self.session as session:
+            user = session.exec(select(User).where(User.id==id)).first()
+            return user
 
     ## <<----------------------------------------------------->>
