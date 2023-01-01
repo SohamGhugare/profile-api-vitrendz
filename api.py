@@ -93,14 +93,20 @@ def update_user(id: int, user: UserUpdate):
 async def fetch_clients(gender: str = "all", sort: str = "none"):
     try:
         if gender != "all":
-            users = db.filter_users_by_gender(gender)
-        users = [u.name for u in users]
+            users = list(db.filter_users_by_gender(gender))
+        else:
+            users = list(db.fetch_all_users())
+
+        if sort == "age":
+            users.sort(key=lambda x: x.age)
+        
         return {
             "response": 200,
             "data": {
-                f"{gender}_clients": users
+                "clients_fetched": [user.name for user in users]
             }
         }
+            
     except HTTPException as e:
         return {
             "response": e.status_code,

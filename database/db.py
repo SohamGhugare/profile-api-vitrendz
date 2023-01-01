@@ -81,6 +81,12 @@ class Database:
             users = session.exec(select(User).where(User.gender == gender)).all()
             return users
 
+    # Fetching all users
+    def fetch_all_users(self):
+        with self.session as session:
+            users = session.exec(select(User)).all()
+            return users
+
     ## <<----------------------------------------------------->>
     ## Utility functions
 
