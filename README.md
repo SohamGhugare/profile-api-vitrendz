@@ -15,3 +15,5 @@
 - DELETE `/clients/{id}` - Delete a particular client.
     - **Possible errors thrown:**
         - 404 - Client not found.
+- PATCH `/clients/{id}` - Update a user. Content-Type: application/json. <br>
+Fields allowed to update: [name, email, company, gender, picture, age, eye_color, phone, address, about, latitude, longitude]
