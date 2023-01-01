@@ -3,6 +3,10 @@
 - [FastAPI](fastapi.tiangolo.com/) - A backend python framework built on OpenAPI and Starlette with performance on par with Golang and NodeJS
 - [SQLModel](sqlmodel.tiangolo.com/) - An ORM built by the same author of FastAPI with powerful integrations for CRUD and DBMS operations
 - [Uvicorn](https://www.uvicorn.org/) - An ASGI server implementation acting as a platform for the API
+- [Railway](https://railway.app) - Hosting service used for hosting the API
+
+## [Click here](https://profile-api-vitrendz-production.up.railway.app/) to check out the hosted API
+## [Click here](https://profile-api-vitrendz-production.up.railway.app/docs) for testing the API with FastAPI Swagger UI
 
 ## API Endpoints:
 - GET `/clients/{id}` - Fetch a particular client.
