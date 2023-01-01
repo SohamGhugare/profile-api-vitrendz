@@ -17,3 +17,13 @@
         - 404 - Client not found.
 - PATCH `/clients/{id}` - Update a user. Content-Type: application/json. <br>
 Fields allowed to update: [name, email, company, gender, picture, age, eye_color, phone, address, about, latitude, longitude]
+
+## Snapshots:
+- CREATE
+![CREATE](screenshots/CREATE.png)
+- READ
+![READ](screenshots/READ.png)
+- UPDATE
+![UPDATE](screenshots/UPDATE.png)
+- DELETE
+![DELETE](screenshots/DELETE.png)
