@@ -19,11 +19,11 @@
 Fields allowed to update: [name, email, company, gender, picture, age, eye_color, phone, address, about, latitude, longitude]
 
 ## Snapshots:
-- CREATE
+- CREATE <br>
 ![CREATE](screenshots/CREATE.png)
-- READ
+- READ <br>
 ![READ](screenshots/READ.png)
-- UPDATE
+- UPDATE <br>
 ![UPDATE](screenshots/UPDATE.png)
-- DELETE
+- DELETE <br>
 ![DELETE](screenshots/DELETE.png)
