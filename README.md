@@ -26,6 +26,10 @@
 - PATCH `/clients/{id}` - Update a user. Content-Type: application/json. <br>
 Fields allowed to update: [name, email, company, gender, picture, age, eye_color, phone, address, about, latitude, longitude]
 
+## Instructions for running the API on local machine:
+    1. Clone the repo and run `pip install -r requirements.txt` to install all dependencies
+    2. Run `python api.py` to host the API on `0.0.0.0:5000` (you can change host and port in `api.py`)
+
 # Note: For testing purposes, the curl commands are given below in snapshots.
 
 ## Snapshots:
