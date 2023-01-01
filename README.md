@@ -18,6 +18,8 @@
 - PATCH `/clients/{id}` - Update a user. Content-Type: application/json. <br>
 Fields allowed to update: [name, email, company, gender, picture, age, eye_color, phone, address, about, latitude, longitude]
 
+# Note: For testing purposes, the curl commands are given below in snapshots.
+
 ## Snapshots:
 - CREATE <br>
 ![CREATE](screenshots/CREATE.png)
