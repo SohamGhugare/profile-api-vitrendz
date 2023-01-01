@@ -12,6 +12,11 @@ from database.db import Database
 app = FastAPI()
 db = Database()
 
+# Init route
+@app.get("/")
+async def index():
+    return {"data": "Hello there..! Please go to https://profile-api-vitrendz-production.up.railway.app/docs for testing the API or https://github.com/SohamGhugare/profile-api-vitrendz for the complete repo..!"}
+
 ## <<----------------------------------------------------->>
 ## CRUD Routes
 
