@@ -17,9 +17,19 @@ db = Database()
 # Fetching user from ID
 @app.get("/clients/{id}")
 async def get_user(id: int):
-    user = db.fetch_user_by_id(id)
-    # Do Stuff
-    return {"data": f"Hello, {user.name}..!"}
+    try:
+        user = db.fetch_user_by_id(id)
+        # Do Stuff
+        return {
+            "response": 200,
+            "data": f"Hello, {user.name}..!"
+        }
+    # Error handling for invalid client id (handled in database/db.py)
+    except HTTPException as e:
+        return {
+            "response": e.status_code,
+            "detail": e.detail
+        }
 
 # Creating new user
 @app.post("/create-user")

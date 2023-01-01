@@ -40,7 +40,10 @@ class Database:
     # Fetching user
     def fetch_user_by_id(self, id: int):
         with self.session as session:
-            user = session.exec(select(User).where(User.id==id)).first()
+            user = session.get(User, id)
+            if not user:
+                # Error handling for invalid user id
+                raise HTTPException(status_code=404, detail="Client not found.")
             return user
 
     # Deleting user
