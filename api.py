@@ -3,6 +3,7 @@ This file contains the main api code
 """
 from fastapi import FastAPI, HTTPException
 from uvicorn import run
+from os import getenv
 
 from database.models import generate_schema, UserCreate, UserUpdate
 from database.parse_json import create_users
@@ -90,4 +91,4 @@ if __name__ == "__main__":
     # create_users()
 
     # Using uvicorn for creating an ASGI server
-    run("api:app", host="0.0.0.0", port=5000, log_level="info")
+    run("api:app", host="0.0.0.0", port=getenv("PORT", default=5000), log_level="info")
