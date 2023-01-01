@@ -1,7 +1,10 @@
 """
 This file contains the main api code
 """
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
+from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import PlainTextResponse, JSONResponse
 from uvicorn import run
 from os import getenv
 
@@ -40,6 +43,8 @@ async def get_user(id: int):
 # Creating new user
 @app.post("/create-user")
 async def create_user(user: UserCreate):
+    if not user.email:
+        return {"Error": "Yes"}
     try:
         user = db.create_user(user)
         # Do Stuff
@@ -53,6 +58,17 @@ async def create_user(user: UserCreate):
             "response": e.status_code,
             "detail": e.detail
         }
+
+# Error handling
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content=jsonable_encoder({
+            "response": 422,
+            "detail": f"{exc.errors()[0]['loc'][1]} is required."
+        }),
+    )
 
 # Deleting an existing user
 @app.delete("/clients/{id}")
@@ -123,4 +139,4 @@ if __name__ == "__main__":
     # create_users()
 
     # Using uvicorn for creating an ASGI server
-    run("api:app", host="0.0.0.0", port=getenv("PORT", default=5000), log_level="info")
+    run("api:app", host="0.0.0.0", port=getenv("PORT", default=5000), log_level="info", reload=True)
