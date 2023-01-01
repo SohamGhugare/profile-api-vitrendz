@@ -36,6 +36,20 @@ class UserCreate(SQLModel):
     company: str
     email: str
 
+# Only these fields should be allowed to update
+class UserUpdate(SQLModel):
+    picture: Optional[str]
+    age: Optional[int]
+    eye_color: Optional[str] 
+    name: Optional[str]
+    gender: Optional[str]    
+    company: Optional[str]
+    email: Optional[str]
+    phone: Optional[str]   
+    address: Optional[str]    
+    about: Optional[str] 
+    latitude: Optional[float] 
+    longitude: Optional[float]
 
 def generate_schema():
     SQLModel.metadata.create_all(create_engine("sqlite:///data/clients.db"))

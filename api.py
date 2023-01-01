@@ -4,7 +4,7 @@ This file contains the main api code
 from fastapi import FastAPI, HTTPException
 from uvicorn import run
 
-from database.models import generate_schema, UserCreate, User
+from database.models import generate_schema, UserCreate, UserUpdate
 from database.parse_json import create_users
 from database.db import Database
 
@@ -56,6 +56,22 @@ async def delete_user(id: int):
         return {
             "response": 202,
             "data": f"Client {name} deleted successfully..!"
+        }
+    # Error handling for invalid client id (handled in database/db.py)
+    except HTTPException as e:
+        return {
+            "response": e.status_code,
+            "detail": e.detail
+        }
+
+# Updating a user
+@app.patch("/clients/{id}")
+def update_user(id: int, user: UserUpdate):
+    try:
+        user_res = db.update_user(id, user)
+        return {
+            "response": 202,
+            "data": f"Client {user_res.name} updated successfully..!"
         }
     # Error handling for invalid client id (handled in database/db.py)
     except HTTPException as e:

@@ -2,7 +2,7 @@
 This file contains all the database operation functions
 """
 from sqlmodel import create_engine, Session, select
-from .models import User, UserCreate
+from .models import User, UserCreate, UserUpdate
 from fastapi import HTTPException
 
 class Database:
@@ -57,6 +57,21 @@ class Database:
             session.delete(user)
             session.commit()
             return name
+
+    # Updating user
+    def update_user(self, id: int, user: UserUpdate):
+        with self.session as session:
+            user_db = session.get(User, id)
+            if not user_db:
+                # Error handling for invalid user id
+                raise HTTPException(status_code=404, detail="Client not found.")
+            user_data = user.dict(exclude_unset=True)
+            for key, value in user_data.items():
+                setattr(user_db, key, value)
+            session.add(user_db)
+            session.commit()
+            session.refresh(user_db)
+            return user_db
 
     ## <<----------------------------------------------------->>
     ## Utility functions
