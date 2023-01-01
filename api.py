@@ -87,6 +87,27 @@ def update_user(id: int, user: UserUpdate):
         }
 
 ## <<----------------------------------------------------->>
+## Filtering routes
+
+@app.get("/clients")
+async def fetch_clients(gender: str = "all", sort: str = "none"):
+    try:
+        if gender != "all":
+            users = db.filter_users_by_gender(gender)
+        users = [u.name for u in users]
+        return {
+            "response": 200,
+            "data": {
+                f"{gender}_clients": users
+            }
+        }
+    except HTTPException as e:
+        return {
+            "response": e.status_code,
+            "detail": e.detail
+        }
+
+## <<----------------------------------------------------->>
 
 if __name__ == "__main__":
     # Generating the database file and schema

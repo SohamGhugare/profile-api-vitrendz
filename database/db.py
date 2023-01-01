@@ -73,6 +73,14 @@ class Database:
             session.refresh(user_db)
             return user_db
 
+    # Filtering by gender
+    def filter_users_by_gender(self, gender:str):
+        if gender != "male" and gender != "female":
+            raise HTTPException(status_code=400, detail="Invalid query. Please provide gender='male' or gender='female'")
+        with self.session as session:
+            users = session.exec(select(User).where(User.gender == gender)).all()
+            return users
+
     ## <<----------------------------------------------------->>
     ## Utility functions
 
