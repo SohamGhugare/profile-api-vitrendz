@@ -12,6 +12,10 @@
 - GET `/clients/{id}` - Fetch a particular client.
     - **Possible errors thrown:**
         - 404 - Client not found.
+- GET `/clients` - Fetch all clients
+    - **Queries:**
+        - `/clients?gender=[male|female|all]` - Filters based on gender
+        - `/clients?sort=[age|none]` - Sorts based on the query
 - POST `/create-user` - Create a new user. Content-Type: application/json. Fields: [name, age, company, email]
     - **Possible errors thrown:**
         - 409 - Client already exists.

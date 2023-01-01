@@ -139,4 +139,4 @@ if __name__ == "__main__":
     # create_users()
 
     # Using uvicorn for creating an ASGI server
-    run("api:app", host="0.0.0.0", port=getenv("PORT", default=5000), log_level="info", reload=True)
+    run("api:app", host="0.0.0.0", port=getenv("PORT", default=5000), log_level="info")
