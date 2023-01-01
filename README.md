@@ -6,10 +6,12 @@
 
 ## API Endpoints:
 - GET `/clients/{id}` - Fetch a particular client.
+    - **Possible errors thrown:**
+        - 404 - Client not found.
 - POST `/create-user` - Create a new user. Content-Type: application/json. Fields: [name, age, company, email]
     - **Possible errors thrown:**
         - 409 - Client already exists.
         - 400 - Email doesnt contain company name.
 - DELETE `/clients/{id}` - Delete a particular client.
     - **Possible errors thrown:**
-        - 400 - Client not found.
+        - 404 - Client not found.
