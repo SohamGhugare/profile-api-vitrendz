@@ -4,6 +4,7 @@ This file contains all the models implemented in the DBMS system
 from sqlmodel import SQLModel, Field, create_engine, JSON, Column
 from typing import Optional, List
 from uuid import uuid4  
+from datetime import datetime
 
 # User Model - Contains all the user data
 class User(SQLModel, table=True):
@@ -13,20 +14,27 @@ class User(SQLModel, table=True):
     balance: float = Field(nullable=False, default=0.0)
     picture: str = Field(nullable=False, default="http://placehold.it/32x32")
     age: int = Field(nullable=False)
-    eye_color: str = Field(nullable=False)
+    eye_color: str = Field(nullable=False, default="unspecified")
     name: str = Field(nullable=False)  
-    gender: str = Field(nullable=False)    
+    gender: str = Field(nullable=False, default="unspecified")    
     company: str = Field(nullable=False)  
     email: str = Field(nullable=False, unique=True)    
-    phone: str = Field(nullable=False)    
-    address: str = Field(nullable=False)    
-    about: str = Field(nullable=True)  
-    registered: str = Field(nullable=False)  
-    latitude: float = Field(nullable=False)  
-    longitude: float = Field(nullable=False)  
-    tags: List[str] = Field(sa_column=Column(JSON))
-    friends: List[str] = Field(sa_column=Column(JSON))
-    greeting: str = Field(nullable=False)
+    phone: str = Field(nullable=False, default="unspecified")    
+    address: str = Field(nullable=False, default="unspecified")    
+    about: str = Field(nullable=True, default="unspecified")  
+    registered: str = Field(nullable=False, default=str(datetime.utcnow()))  
+    latitude: float = Field(nullable=False, default=-0.0)  
+    longitude: float = Field(nullable=False, default=-0.0)  
+    tags: List[str] = Field(sa_column=Column(JSON), default=[])
+    friends: List[str] = Field(sa_column=Column(JSON), default=[])
+    greeting: str = Field(nullable=False, default="unspecified")
+
+# While creating new user, we only need these fields, the rest of them can be updated later
+class UserCreate(SQLModel):
+    name: str
+    age: int
+    company: str
+    email: str
 
 
 def generate_schema():
